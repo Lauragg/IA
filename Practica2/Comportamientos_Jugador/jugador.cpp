@@ -130,7 +130,7 @@ void ComportamientoJugador::calcularPlan(const celda & origen, const celda & des
 	//Inicializamos ruta, insertándole todas las celdas en orden de lectura.
 	bool nulo=false;
 	bool doble=false;
-	//int contador=0;
+	int contador=0;
 	while(!nulo&&!doble){
 		ruta.push_front(actual);
 		if(actual.getPadre()==NULL)
