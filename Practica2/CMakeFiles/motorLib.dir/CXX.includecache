@@ -6,37 +6,37 @@
 
 #IncludeRegexTransform: 
 
-/home/laura/Escritorio/IA/Practica2/src/motorlib/entidad.cpp
+/home/laura/Escritorio/GitHub/IA/Practica2/src/motorlib/entidad.cpp
 motorlib/entidad.hpp
-/home/laura/Escritorio/IA/Practica2/src/motorlib/motorlib/entidad.hpp
+/home/laura/Escritorio/GitHub/IA/Practica2/src/motorlib/motorlib/entidad.hpp
 
-/home/laura/Escritorio/IA/Practica2/src/motorlib/mapa.cpp
+/home/laura/Escritorio/GitHub/IA/Practica2/src/motorlib/mapa.cpp
 motorlib/mapa.hpp
-/home/laura/Escritorio/IA/Practica2/src/motorlib/motorlib/mapa.hpp
+/home/laura/Escritorio/GitHub/IA/Practica2/src/motorlib/motorlib/mapa.hpp
 
-/home/laura/Escritorio/IA/Practica2/src/motorlib/monitor.cpp
+/home/laura/Escritorio/GitHub/IA/Practica2/src/motorlib/monitor.cpp
 motorlib/monitor.hpp
-/home/laura/Escritorio/IA/Practica2/src/motorlib/motorlib/monitor.hpp
+/home/laura/Escritorio/GitHub/IA/Practica2/src/motorlib/motorlib/monitor.hpp
 fstream
 -
 
-/home/laura/Escritorio/IA/Practica2/src/motorlib/motor_grafico.cpp
+/home/laura/Escritorio/GitHub/IA/Practica2/src/motorlib/motor_grafico.cpp
 motorlib.hpp
-/home/laura/Escritorio/IA/Practica2/src/motorlib/motorlib.hpp
+/home/laura/Escritorio/GitHub/IA/Practica2/src/motorlib/motorlib.hpp
 glui/glui.h
 -
 dirent.h
 -
 
-/home/laura/Escritorio/IA/Practica2/src/motorlib/motor_juego.cpp
+/home/laura/Escritorio/GitHub/IA/Practica2/src/motorlib/motor_juego.cpp
 motorlib.hpp
-/home/laura/Escritorio/IA/Practica2/src/motorlib/motorlib.hpp
+/home/laura/Escritorio/GitHub/IA/Practica2/src/motorlib/motorlib.hpp
 unistd.h
 -
 
-/home/laura/Escritorio/IA/Practica2/src/motorlib/util.cpp
+/home/laura/Escritorio/GitHub/IA/Practica2/src/motorlib/util.cpp
 motorlib/util.h
-/home/laura/Escritorio/IA/Practica2/src/motorlib/motorlib/util.h
+/home/laura/Escritorio/GitHub/IA/Practica2/src/motorlib/motorlib/util.h
 
 Comportamientos_Jugador/aldeano.hpp
 chrono

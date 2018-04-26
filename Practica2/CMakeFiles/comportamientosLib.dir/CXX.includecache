@@ -6,13 +6,13 @@
 
 #IncludeRegexTransform: 
 
-/home/laura/Escritorio/IA/Practica2/Comportamientos_Jugador/aldeano.cpp
+/home/laura/Escritorio/GitHub/IA/Practica2/Comportamientos_Jugador/aldeano.cpp
 ../Comportamientos_Jugador/aldeano.hpp
-/home/laura/Escritorio/IA/Practica2/Comportamientos_Jugador/aldeano.hpp
+/home/laura/Escritorio/GitHub/IA/Practica2/Comportamientos_Jugador/aldeano.hpp
 motorlib/util.h
-/home/laura/Escritorio/IA/Practica2/Comportamientos_Jugador/motorlib/util.h
+/home/laura/Escritorio/GitHub/IA/Practica2/Comportamientos_Jugador/motorlib/util.h
 
-/home/laura/Escritorio/IA/Practica2/Comportamientos_Jugador/aldeano.hpp
+/home/laura/Escritorio/GitHub/IA/Practica2/Comportamientos_Jugador/aldeano.hpp
 chrono
 -
 time.h
@@ -20,19 +20,19 @@ time.h
 thread
 -
 comportamientos/comportamiento.hpp
-/home/laura/Escritorio/IA/Practica2/Comportamientos_Jugador/comportamientos/comportamiento.hpp
+/home/laura/Escritorio/GitHub/IA/Practica2/Comportamientos_Jugador/comportamientos/comportamiento.hpp
 
-/home/laura/Escritorio/IA/Practica2/Comportamientos_Jugador/jugador.cpp
+/home/laura/Escritorio/GitHub/IA/Practica2/Comportamientos_Jugador/jugador.cpp
 ../Comportamientos_Jugador/jugador.hpp
-/home/laura/Escritorio/IA/Practica2/Comportamientos_Jugador/jugador.hpp
+/home/laura/Escritorio/GitHub/IA/Practica2/Comportamientos_Jugador/jugador.hpp
 motorlib/util.h
-/home/laura/Escritorio/IA/Practica2/Comportamientos_Jugador/motorlib/util.h
+/home/laura/Escritorio/GitHub/IA/Practica2/Comportamientos_Jugador/motorlib/util.h
 iostream
 -
 
-/home/laura/Escritorio/IA/Practica2/Comportamientos_Jugador/jugador.hpp
+/home/laura/Escritorio/GitHub/IA/Practica2/Comportamientos_Jugador/jugador.hpp
 comportamientos/comportamiento.hpp
-/home/laura/Escritorio/IA/Practica2/Comportamientos_Jugador/comportamientos/comportamiento.hpp
+/home/laura/Escritorio/GitHub/IA/Practica2/Comportamientos_Jugador/comportamientos/comportamiento.hpp
 list
 -
 climits
@@ -42,9 +42,9 @@ cmath
 iostream
 -
 
-/home/laura/Escritorio/IA/Practica2/src/comportamientos/comportamiento.cpp
+/home/laura/Escritorio/GitHub/IA/Practica2/src/comportamientos/comportamiento.cpp
 comportamientos/comportamiento.hpp
-/home/laura/Escritorio/IA/Practica2/src/comportamientos/comportamientos/comportamiento.hpp
+/home/laura/Escritorio/GitHub/IA/Practica2/src/comportamientos/comportamientos/comportamiento.hpp
 
 include/comportamientos/comportamiento.hpp
 vector

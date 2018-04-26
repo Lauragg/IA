@@ -110,7 +110,7 @@ class celda{
     return pos.fila==b.pos.fila && pos.columna==b.pos.columna;
   }
 
-/*  celda & operator=(const celda & b){
+  celda & operator=(const celda & b){
     if(this!= &b){
       padre=b.padre;
       pos.fila=b.pos.fila;
@@ -121,8 +121,21 @@ class celda{
       dest_fila=b.dest_fila;
       dest_columna=b.dest_columna;
     }
-  }*/
-
+  }
+/*
+  celda & operator=(celda * b){
+    if(this!= b){
+      padre=b->padre;
+      pos.fila=b->pos.fila;
+      pos.columna=b->pos.columna;
+      pos.orientacion=b->pos.orientacion;
+      adyacentes=b->adyacentes;
+      distanciaOrigen=b->distanciaOrigen;
+      dest_fila=b->dest_fila;
+      dest_columna=b->dest_columna;
+    }
+  }
+*/
 /*
   Este método nos devolverá true si tenemos una menor distancia al Origen o no en sentido estricto.
 */
