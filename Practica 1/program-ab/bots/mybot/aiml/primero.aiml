@@ -1,0 +1,848 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+<!-- Creemos saludos sencillos -->
+<category>
+<pattern>Hola</pattern>
+<template>Hola, que tal?</template>
+</category>
+
+<category>
+<pattern> ^ [Bien guay genial] ^ </pattern>
+<that>Hola, que tal </that>
+<template> ¡Me alegro!</template>
+</category>
+
+<category>
+<pattern> ^ [Mal horrible] ^ </pattern>
+<that>Hola, que tal </that>
+<template> Pues vaya...</template>
+</category>
+
+<!-- Empecemos con las preguntas sobre la asignatura... Nivel 0 -->
+<!-- 1 -->
+<category>
+<pattern>COMO CONSIGO SUPERAR LA PARTE PRACTICA</pattern>
+<template>Esta pregunta es la única que podría tener un poquito más de complicación numérica, y tampoco es que la tenga. Presta atención:
+Sobre 10, 1 punto es la asistencia y participación en las clases de prácticas y 9 puntos saldrán de la media de 3 entregas prácticas y un examen fina, siendo estos evaluados sobre 10 puntos. </template>
+</category>
+
+<category>
+<pattern> * [SUPERAR SUPERO APROBAR APRUEBO PASAR PASO APRUEBA] * PRACTICA ^</pattern>
+<template><srai>COMO CONSIGO SUPERAR LA PARTE PRACTICA</srai></template>
+</category>
+<!-- 2 -->
+<category>
+<pattern>COMO SE EVALUA EN LA CONVOCATORIA ORDINARIA</pattern>
+<template>Pues por el método simple de siempre.
+La mitad de la nota es la teoría y la otra mitad las prácticas. Ambas son evaluables sobre 10 puntos y, de acuerdo a la guía docente, necesitas sacar un 3 en ambas partes para que te puedan hacer media. </template>
+</category>
+
+<category>
+<pattern> * [EVALUA EVALUACION FUNCIONA VA] ^ ORDINARIA ^ </pattern>
+<template><srai>COMO SE EVALUA EN LA CONVOCATORIA ORDINARIA</srai></template>
+</category>
+<!-- 3 -->
+<category>
+<pattern>HAY EXAMEN DE PRACTICAS EN LA CONVOCATORIA EXTRAORDINARIA</pattern>
+<template>Sí y no. Verás, no habrá un examen de prácticas sino que habrá un único examen que contendrá tanto preguntas de teoría como de prácticas. Así que, no, no se guardan partes. </template>
+</category>
+
+<category>
+<pattern> * EXAMEN * PRACTICAS * EXTRAORDINARIA ^ </pattern>
+<template><srai>HAY EXAMEN DE PRACTICAS EN LA CONVOCATORIA EXTRAORDINARIA</srai></template>
+</category>
+<!-- 4 -->
+<category>
+<pattern>QUE PASA SI NO PUEDO ASISTIR A CLASE REGULARMENTE</pattern>
+<template>Pues que te quedas sin ese puntito dentro de asistencia y participación en clase. ¡No te deprimas! Habla con tus profes que quizás sean majos y, con una debida justificación, te permitan ganarlo de otra forma.</template>
+</category>
+
+<category>
+<pattern> * NO * [ASISTIR ASISTO VOY IR] * CLASE ^ </pattern>
+<template><srai>QUE PASA SI NO PUEDO ASISTIR A CLASE REGULARMENTE</srai></template>
+</category>
+<!-- 5 -->
+<category>
+<pattern>HAY NOTA MINIMA PARA APROBAR</pattern>
+<template>Tienes que sacar el mítico 5 que hay que sacar de base en todas las asignaturas. Aparte de eso necesitas sacar un 3 tanto en teoría como en prácticas para que te hagan media. ¡Alégrate, son mínimos razonables!</template>
+</category>
+
+<category>
+<pattern> * (NOTA) * (MINIM+) * [APROBAR APRUEBO SUPERO SUPERAR PASO PASAR] ^</pattern>
+<template><srai>HAY NOTA MINIMA PARA APROBAR</srai></template>
+</category>
+<!-- 6 -->
+<category>
+<pattern>LAS PRACTICAS SON OBLIGATORIAS</pattern>
+<template>No, no son obligatorias. Lo único que puede llegar a pasar es que suspendas por no haber asistido a clase, no haber participado o no haber presentado algo, pero todo sigue siendo super opcional. Si no vas a hacer algo de eso por pereza quizás te venga mejor pedirte la evaluación única.</template>
+</category>
+
+<category>
+<pattern>* [PRACTICAS PRACTICA] * OBLIGATORI+ ^</pattern>
+<template><srai>LAS PRACTICAS SON OBLIGATORIAS</srai></template>
+</category>
+<!-- 7 -->
+<category>
+<pattern>CUANTO VALE CADA PRACTICA CON RESPECTO A LA NOTA FINAL</pattern>
+<template>Ya podrías hacer tú las cuentas y no pedirme a mí que te las haga... Pero bueno, ahí va: 1.125 puntos... ¡Pero no te olvides del mínimo en teoría! </template>
+</category>
+
+<category>
+<pattern>* [VALE PUNTUA] * PRACTICA * FINAL ^</pattern>
+<template><srai>CUANTO VALE CADA PRACTICA CON RESPECTO A LA NOTA FINAL</srai></template>
+</category>
+<!-- 8 -->
+<category>
+<pattern>COMO SE CONSIGUEN PUNTOS POR PARTICIPACION</pattern>
+<template>Siendo una buena persona y cumpliento tus obligaciones como estudiante. Lo básico vaya, ve a clase, atiende, consulta dudas... Y no molestes, anda.</template>
+</category>
+
+<category>
+<pattern>* [CONSIG+ LOGR+ GAN+] ^ [PUNTO PUNTOS NOTA NOTAS] ^ PARTICIPA+ ^</pattern>
+<template><srai>COMO SE CONSIGUEN PUNTOS POR PARTICIPACION</srai></template>
+</category>
+<!-- 9 -->
+<category>
+<pattern>LOS TRABAJOS SON INDIVIDUALES</pattern>
+<template>Claro, pero, ¿qué más te da? Si de todas formas ibas a hacerlos indivualmente...</template>
+</category>
+
+<category>
+<pattern>* [TRABAJ+ PRACTIC+] * [INDIVIDUAL+] ^</pattern>
+<template><srai>LOS TRABAJOS SON INDIVIDUALES</srai></template>
+</category>
+<!-- 10 -->
+<category>
+<pattern>SE PUEDEN HACER LOS TRABAJOS EN GRUPO</pattern>
+<template>Pues no, la verdad es que no. Se supone que están preparadas para hacerlas indivualmente. Si quieres hacerlas en grupo tendrás que entregarme mucho más trabajo y no lo vas a hacer.</template>
+</category>
+
+<category>
+<pattern>* HA+ ^ [TRABAJ+ PRACTIC+] * [GRUPO VARIOS VARIAS] ^</pattern>
+<template><srai>SE PUEDEN HACER LOS TRABAJOS EN GRUPO</srai></template>
+</category>
+<!-- 11 -->
+<category>
+<pattern>HAY QUE ENTREGAR LOS EJERCICIOS DE LAS RELACIONES DE PROBLEMAS</pattern>
+<template>No, no hay que entregarlos. O al menos yo no he recibido ninguna información que me indique lo contrario.</template>
+</category>
+
+<category>
+<pattern>* [ENTREG+ SUB+] * EJERCICIO+ * PROBLEMAS ^</pattern>
+<template><srai>HAY QUE ENTREGAR LOS EJERCICIOS DE LAS RELACIONES DE PROBLEMAS</srai></template>
+</category>
+<!-- 12 -->
+<category>
+<pattern>CUANTO VALE EL PRIMER EXAMEN DE TEORIA</pattern>
+<template>La mitad de la nota de teoría, es decir, 2.5 puntos respecto a la nota final de la asignatura. Son dos exámenes y se les hace la media, no es tan difícil se saber...</template>
+</category>
+
+<category>
+<pattern>^ [VALE PUNTUA] ^ EXAMEN ^ TEORIA ^</pattern>
+<template><srai>CUANTO VALE EL PRIMER EXAMEN DE TEORIA</srai></template>
+</category>
+<!-- 13 -->
+<category>
+<pattern>PUEDO RECUPERAR UNA PRACTICA O EXAMEN</pattern>
+<template>De momento, no. Y aunque se pudiera no sé si vas a tener tiempo para eso con tantas asignaturas.</template>
+</category>
+
+<category>
+<pattern>* [RECUPER+ REPET+] * </pattern>
+<template><srai>PUEDO RECUPERAR UNA PRACTICA O EXAMEN</srai></template>
+</category>
+<!-- 14 -->
+<category>
+<pattern>QUE PASA SI ME COPIO DE OTRO ESTUDIANTE</pattern>
+<template>Que has pagado la asignatura para nada. Pierdes el dinero de la posible beca 99% de la Junta de Andalucía ,te toca pagar el doble el año que viene y, encima, tu profesor del próximo año pensará mal de ti desde antes de conocerte. Estarás en la mierda, con la asignatura suspensa y con un bonito 0. Y sí, sé que la puedes recuperar en extraordinaria... Pero no creo que te vaya del todo bien si abandonas la asignatura desde el inicio.</template>
+</category>
+
+<category>
+<pattern> * COPIO * </pattern>
+<template><srai>QUE PASA SI ME COPIO DE OTRO ESTUDIANTE</srai></template>
+</category>
+<!-- 15 -->
+<category>
+<pattern>QUE PASA SI ME DEJO COPIAR DE OTRO ESTUDIANTE</pattern>
+<template>Aquí la pregunta no es si te dejas copiar o si te han copiado sin tu permiso. Es tan simple como que el profesor no puede saber si tú te has copiado o ha sido el otro estudiante quien se ha copiado, no es adivino. Por ello, tendrás las mismas consecuencias que el que se ha copiado, aunque no haya sido tu culpa y no supieras nada de ello. Cuidado con GitHub.</template>
+</category>
+
+<category>
+<pattern>* [DEJ+ PERMIT+] * COPI+ ^</pattern>
+<template><srai>QUE PASA SI ME DEJO COPIAR DE OTRO ESTUDIANTE</srai></template>
+</category>
+<!-- 16 -->
+<category>
+<pattern>Y SI SUSPENDO EN LA CONVOCATORIA ORDINARIA</pattern>
+<template>No es el fin del mundo. Todavía te queda la convocatoria extraordinaria, pero es un latazo así que intenta aprobar ahora.</template>
+</category>
+
+<category>
+<pattern>* [SUPEND+ REPRUEB+ REPROB+] * ORDINARIA ^</pattern>
+<template><srai>Y SI SUSPENDO EN LA CONVOCATORIA ORDINARIA</srai></template>
+</category>
+<!-- 17 -->
+<category>
+<pattern>CUANTO VALE LA PRACTICA Y LA TEORIA</pattern>
+<template>Juntas, valen 10 puntos. ¡Magia! Ya, en serio, cada una vale la mitad de la asignatura.</template>
+</category>
+
+<category>
+<pattern>* [VALE PUNTUA ES] * PRACTICA * TEORIA ^</pattern>
+<template><srai>CUANTO VALE LA PRACTICA Y LA TEORIA</srai></template>
+</category>
+<!-- 18 -->
+<category>
+<pattern>CUAL ES EL HORARIO DE TUTORIAS DEL PROFESOR DE PRACTICAS</pattern>
+<template>El profesor de prácticas es Fernando Berzal Galiano, sus tutorías son en su despacho D17 en la ETSIIT en las siguientes horas:
+  Lunes de 15:30 a 17:30 y de 19:30 a 20:30
+  Martes de 18:30 a 19:30
+  Viernes de 17:30 a 19:30</template>
+</category>
+
+<category>
+<pattern>* HORARIO ^ TUTORIA+ * PROFE+ ^ PRACTICA+ ^</pattern>
+<template><srai>CUAL ES EL HORARIO DE TUTORIAS DEL PROFESOR DE PRACTICAS</srai></template>
+</category>
+<!-- 19 -->
+<category>
+<pattern>SE PUEDE APROBAR LA PARTE PRACTICA DE LA ASIGNATURA SI NO PRESENTO UNA PRACTICA</pattern>
+<template>Sí, mientras que llegues sumando todos los puntos de prácticas al 3 para que te haga media.</template>
+</category>
+
+<category>
+<pattern>* [APROB+ PAS+] * PRACTICA * [NO SIN] *</pattern>
+<template><srai>SE PUEDE APROBAR LA PARTE PRACTICA DE LA ASIGNATURA SI NO PRESENTO UNA PRACTICA</srai></template>
+</category>
+<!-- 20 -->
+<category>
+<pattern>CUAL ES LA NOTA MINIMA QUE TENGO QUE OBTENER EN CADA PARTE PARA HACER MEDIA</pattern>
+<template>Un 3, pero te recuerdo que si tienes un 3 en teoría y otro 3 en prácticas la media es 3 y por tanto se suspende la asignatura.</template>
+</category>
+
+<category>
+<pattern>* MINIM+ * [OBTEN+ SAC+] * MEDIA ^</pattern>
+<template><srai>CUAL ES LA NOTA MINIMA QUE TENGO QUE OBTENER EN CADA PARTE PARA HACER MEDIA</srai></template>
+</category>
+<!-- 21 -->
+<category>
+<pattern>QUE PUNTUACION OBTENGO EN LA PRACTICA 1 SI OPTO POR DEFENDER EL NIVEL 3 Y NO LO SUPERO</pattern>
+<template>Un 6.</template>
+</category>
+
+<category>
+<pattern>* [PUNTUACION NOTA VALOR] * PRACTICA ^ 1 * 3 * NO [SUPER+ PAS+] ^</pattern>
+<template><srai>QUE PUNTUACION OBTEGO EN LA PRACTICA 1 SI OPTO POR DEFENDER EL NIVEL 3 Y NO LO SUPERO</srai></template>
+</category>
+<!-- 22 -->
+<category>
+<pattern>PUEDO ENTREGAR LA PRACTICA 1 SIN HACER LA TAREA RELATIVA AL NIVEL 0</pattern>
+<template>No, es un suspenso directo.</template>
+</category>
+
+<category>
+<pattern>* PRACTICA ^ 1 * NIVEL ^ 0 ^</pattern>
+<template></template>
+</category>
+<!-- 23 -->
+<category>
+<pattern>QUE TENGO QUE HACER SI NO PUEDO ASISTIR A LA SESION DE PRACTICAS EN LA QUE ME CORRESPONDE HACER LA DEFENSA DE MI PRACTICA 1</pattern>
+<template>Lo primero de todo hablar con tu profesor de prácticas. Él será quien sabrá aconsejarte mejor que nadie, sobre todo mucho mejor que un bot.</template>
+</category>
+
+<category>
+<pattern>* [NO IMPOSIBLE] * [ASIST+ IR VOY] * [PRACTCAS SESION CORRESPONDE] ^</pattern>
+<template><srai>QUE TENGO QUE HACER SI NO PUEDO ASISTIR A LA SESION DE PRACTICAS EN LA QUE ME CORRESPONDER HACER LA DEFENSA DE MI PRACTICA 1</srai></template>
+</category>
+<!-- 24 -->
+<category>
+<pattern>CUANTAS PRUEBAS TEORICAS TENDRE A LO LARGO DEL CURSO</pattern>
+<template>Dos examencillos de nada.</template>
+</category>
+
+<category>
+<pattern>* PRUEBAS ^ TEORI+ * CURSO ^</pattern>
+<template><srai>CUANTAS PRUEBAS TEORICAS TENDRE A LO LARGO DEL CURSO</srai></template>
+</category>
+<!-- 25 -->
+<category>
+<pattern>QUE VALE LA PRIMERA PRUEBA TEORICA</pattern>
+<template>La mitad de la nota de teoría, es decir, 2.5 puntos respecto a la nota final de la asignatura. Son dos exámenes y se les hace la media, no es tan difícil se saber...</template>
+</category>
+
+<category>
+<pattern>* [VALE PUNTUA ES NOTA] * (PRIMERA) ^ TEORI+ ^ </pattern>
+<template><srai>QUE VALE LA PRIMERA PRUEBA TEORICA</srai></template>
+</category>
+<!-- 26 -->
+<category>
+<pattern>EN QUE CONSISTE EL EXAMEN DE EJERCICIOS</pattern>
+<template>Resolver ejercicios aplicando los conocimientos adquiridos tanto en teoría como en prácticas. O eso se sobreentiende.</template>
+</category>
+
+<category>
+<pattern>* [CONSISTE ES VA] * EXAMEN ^ EJERCICIO+ ^</pattern>
+<template><srai>EN QUE CONSISTE EL EXAMEN DE EJERCICIOS</srai></template>
+</category>
+<!-- 27 -->
+<category>
+<pattern>QUE DEBERIA HACER SI NO ESTOY SEGURO DE PODER SUPERAR EL NIVEL 3 DE LA PRACTICA 1</pattern>
+<template>Mejor no te la juegues y ve directamente a por el nivel 2, así podrás optar a un 8 en lugar de quedarte con 6.</template>
+</category>
+
+<category>
+<pattern>* [SEGUR+ PREPARAD+ CAPACITAD+] * [SUPERAR PASAR] * 3 * 1 ^</pattern>
+<template><srai>QUE DEBERIA HACER SI NO ESTOY SEGURO DE PODER SUPERAR EL NIVEL 3 DE LA PRACTICA 1</srai></template>
+</category>
+<!-- 28 -->
+<category>
+<pattern>YO PROGRAMO MUY BIEN EN C++, PODRIA HACER LA PRACTICA 1 EN ESE LENGUAJE</pattern>
+<template>Podrías podrías... Pero mejor no c:</template>
+</category>
+
+<category>
+<pattern>^ [PROGRAM+ SE] ^ [BIEN GENIAL PERFECTO] ^ PRACTICA ^</pattern>
+<template><srai>YO PROGRAMO MUY BIEN EN C++, PODRIA HACER LA PRACTICA 1 EN ESE LENGUAJE</srai></template>
+</category>
+<!-- 29 -->
+<category>
+<pattern>ME ENCANTAN LOS AGENTES CONVERSACIONALES Y SOY UN EXPERTO EN SU CONSTRUCCION PODRIA USAR UN AGENTE CONVERSACIONAL PARA QUE VAYAN EN MI LUGAR A HACER LA DEFENSA DE PRACTICAS</pattern>
+<template>Intentalo, pero como se equivoque en algo tendrás un 0. Ah, y tampoco te contará como asistencia a clase.</template>
+</category>
+
+<category>
+<pattern>* AGENT+ * DEFEN+ ^ </pattern>
+<template><srai>ME ENCANTAN LOS AGENTES CONVERSACIONALES Y SOY UN EXPERTO EN SU CONSTRUCCION PODRIA USAR UN AGENTE CONVERSACIONAL PARA QUE VAYA EN MI LUGAR A HACER LA DEFENSA DE PRACTICAS</srai></template>
+</category>
+<!-- 30 -->
+<category>
+<pattern>CUANTO VALE LA PARTICIPACION CON RESPECTO A LA NOTA FINAL</pattern>
+<template>Medio puntito, ¡todo un regalazo!</template>
+</category>
+
+<category>
+<pattern>* PARTICIPACION * NOTA FINAL ^</pattern>
+<template><srai>CUANTO VALE LA PARTICIPACION CON RESPECTO A LA NOTA FINAL</srai></template>
+</category>
+
+<!-- Contineuemos con el resto del proyecto. Nivel 1 y sucesivos.-->
+<category>
+<pattern>^ jug+ ^</pattern>
+<template>¡Claro! ¿Eliges o elijo?</template>
+</category>
+
+<!--Elige el humano -->
+<category>
+<pattern>^ [elijo eligiré hago] ^</pattern>
+<template>
+  <think>
+    <!-- Guardamos en lista todas las frutas que conocemos -->
+    <set name="lista"><readset>frutas</readset></set>
+    <set name="topic">humano</set>
+  </think>
+  Tiene vitamina A
+</template>
+</category>
+
+<topic name="humano">
+
+<category>
+<pattern> ^ [si claro] ^ </pattern>
+<that> Tiene vitamina A </that>
+<template>
+  <srai>SIVITAMINA A</srai>
+  Es pequeña
+</template>
+</category>
+
+<category>
+<pattern>^ no ^</pattern>
+<that>TIENE VITAMINA A</that>
+<template>
+  <srai>NOVITAMINA A</srai>
+  Es mediana
+</template>
+</category>
+
+<category>
+<pattern>^ [si claro] ^</pattern>
+<that>Es pequeña</that>
+<template>
+  <srai>SITAMAÑO pequeño</srai>
+  Es dulce
+</template>
+</category>
+
+<category>
+<pattern>^ no ^</pattern>
+<that>Es pequeña</that>
+<template>
+  <srai>NOTAMAÑO pequeño</srai>
+  Es verde
+</template>
+</category>
+
+<category>
+<pattern>^ [si claro] ^</pattern>
+<that>Es mediana</that>
+<template>
+  <srai>SITAMAÑO mediano</srai>
+  Es dulce
+</template>
+</category>
+
+<category>
+<pattern>^ no ^</pattern>
+<that>Es mediana</that>
+<template>
+  <srai>NOTAMAÑO mediano</srai>
+  Es pequeña
+</template>
+</category>
+
+<category>
+<pattern>^ [si claro] ^</pattern>
+<that>Es acida</that>
+<template>
+  <srai>SISABOR acido</srai>
+  La fruta es <srai>TOP <get name="lista"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ no ^</pattern>
+<that>Es acida</that>
+<template>
+  <srai>NOSABOR acido</srai>
+  Es semiacida
+</template>
+</category>
+
+<category>
+<pattern>^ [si claro] ^</pattern>
+<that>Es dulce</that>
+<template>
+  <srai>SISABOR dulce</srai>
+  <think><set var="size"><srai>COUNT <get name="lista"/></srai></set></think>
+  <condition var="size">
+    <li value="2">Es verde</li>
+    <li>
+      La fruta es <srai>TOP <get name="lista"/></srai>
+    </li>
+  </condition>
+</template>
+</category>
+
+<category>
+<pattern>^ no ^</pattern>
+<that>Es dulce</that>
+<template>
+  <srai>NOSABOR dulce</srai>
+  Es acida
+</template>
+</category>
+
+<category>
+<pattern>^ [si claro] ^</pattern>
+<that>Es verde</that>
+<template>
+  <srai>SICOLOR verde</srai>
+  La fruta es <srai>TOP <get name="lista"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ no ^</pattern>
+<that>Es verde</that>
+<template>
+  <srai>NOCOLOR verde</srai>
+  La fruta es <srai>TOP <get name="lista"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ [si claro] ^</pattern>
+<that>Es semiacida</that>
+<template>
+  <srai>SISABOR semiacido</srai>
+  La fruta es <srai>TOP <get name="lista"/></srai>
+</template>
+</category>
+
+<category>
+<pattern>^ no ^</pattern>
+<that>Es semiacida</that>
+<template>
+  <srai>NOSABOR semiacido</srai>
+  La fruta es <srai>TOP <get name="lista"/></srai>
+</template>
+</category>
+
+
+
+<category>
+<pattern>SIVITAMINA <set>vitamina</set> </pattern>
+<template>
+  <think>
+    <set var="auxlist"><get name="lista"/></set>
+    <set var="fruta"><srai>ITERATE <get name="lista"/></srai></set>
+    <condition var="fruta">
+      <li value="$"></li>
+      <li>
+        <set var="contenido"><map name="vitaminas"><get var="fruta"/></map></set>
+        <set var="pos"><srai>FINDITEM <star/> IN <get var="contenido"/></srai></set>
+        <condition var="pos">
+          <li value="0">
+            <set var="item"><srai> FINDITEM <get var="fruta"/> IN <get var="auxlist"/> </srai></set>
+            <set var="auxlist"><srai> REMOVEITEM <get var="item"/> IN <get var="auxlist"/></srai></set>
+          </li>
+          <li></li>
+        </condition>
+        <set var="fruta"><srai>NEXT</srai></set>
+      <loop/>
+      </li>
+    </condition>
+    <set name="lista"><get var="auxlist"/></set>
+  </think>
+</template>
+</category>
+
+<category>
+<pattern> NOVITAMINA <set>vitamina</set> </pattern>
+<template>
+  <think>
+    <set var="auxlist"><get name="lista"/></set>
+    <set var="fruta"><srai>ITERATE <get name="lista"/></srai></set>
+    <condition var="fruta">
+      <li value="$"></li>
+      <li>
+        <set var="contenido"><map name="vitaminas"><get var="fruta"/></map></set>
+        <set var="pos"><srai>FINDITEM <star/> IN <get var="contenido"/></srai></set>
+        <condition var="pos">
+          <li value="0"></li>
+          <li>
+            <set var="item"><srai>FINDITEM <get var="fruta"/> IN <get var="auxlist"/></srai></set>
+            <set var="auxlist"><srai> REMOVEITEM <get var="item"/> IN <get var="auxlist"/></srai></set>
+          </li>
+        </condition>
+        <set var="fruta"><srai>NEXT</srai></set>
+      <loop/>
+      </li>
+    </condition>
+    <set name="lista"><get var="auxlist"/></set>
+  </think>
+</template>
+</category>
+
+<category>
+<pattern>SICOLOR <set>color</set> </pattern>
+<template>
+  <think>
+    <set var="auxlist"><get name="lista"/></set>
+    <set var="fruta"><srai>ITERATE <get name="lista"/></srai></set>
+    <condition var="fruta">
+      <li value="$"></li>
+      <li>
+        <set var="contenido"><map name="colores"><get var="fruta"/></map></set>
+        <set var="pos"><srai>FINDITEM <star/> IN <get var="contenido"/></srai></set>
+        <condition var="pos">
+          <li value="0">
+            <set var="item"><srai> FINDITEM <get var="fruta"/> IN <get var="auxlist"/> </srai></set>
+            <set var="auxlist"><srai> REMOVEITEM <get var="item"/> IN <get var="auxlist"/></srai></set>
+          </li>
+          <li></li>
+        </condition>
+        <set var="fruta"><srai>NEXT</srai></set>
+      <loop/>
+      </li>
+    </condition>
+    <set name="lista"><get var="auxlist"/></set>
+  </think>
+</template>
+</category>
+
+<category>
+<pattern> NOCOLOR <set>color</set> </pattern>
+<template>
+  <think>
+    <set var="auxlist"><get name="lista"/></set>
+    <set var="fruta"><srai>ITERATE <get name="lista"/></srai></set>
+    <condition var="fruta">
+      <li value="$"></li>
+      <li>
+        <set var="contenido"><map name="colores"><get var="fruta"/></map></set>
+        <set var="pos"><srai>FINDITEM <star/> IN <get var="contenido"/></srai></set>
+        <condition var="pos">
+          <li value="0"></li>
+          <li>
+            <set var="item"><srai>FINDITEM <get var="fruta"/> IN <get var="auxlist"/></srai></set>
+            <set var="auxlist"><srai> REMOVEITEM <get var="item"/> IN <get var="auxlist"/></srai></set>
+          </li>
+        </condition>
+        <set var="fruta"><srai>NEXT</srai></set>
+      <loop/>
+      </li>
+    </condition>
+    <set name="lista"><get var="auxlist"/></set>
+  </think>
+</template>
+</category>
+
+<category>
+<pattern>SISABOR <set>sabor</set> </pattern>
+<template>
+  <think>
+    <set var="auxlist"><get name="lista"/></set>
+    <set var="fruta"><srai>ITERATE <get name="lista"/></srai></set>
+    <condition var="fruta">
+      <li value="$"></li>
+      <li>
+        <set var="contenido"><map name="sabores"><get var="fruta"/></map></set>
+        <set var="pos"><srai>FINDITEM <star/> IN <get var="contenido"/></srai></set>
+        <condition var="pos">
+          <li value="0">
+            <set var="item"><srai> FINDITEM <get var="fruta"/> IN <get var="auxlist"/> </srai></set>
+            <set var="auxlist"><srai> REMOVEITEM <get var="item"/> IN <get var="auxlist"/></srai></set>
+          </li>
+          <li></li>
+        </condition>
+        <set var="fruta"><srai>NEXT</srai></set>
+      <loop/>
+      </li>
+    </condition>
+    <set name="lista"><get var="auxlist"/></set>
+  </think>
+</template>
+</category>
+
+<category>
+<pattern> NOSABOR <set>sabor</set> </pattern>
+<template>
+  <think>
+    <set var="auxlist"><get name="lista"/></set>
+    <set var="fruta"><srai>ITERATE <get name="lista"/></srai></set>
+    <condition var="fruta">
+      <li value="$"></li>
+      <li>
+        <set var="contenido"><map name="sabores"><get var="fruta"/></map></set>
+        <set var="pos"><srai>FINDITEM <star/> IN <get var="contenido"/></srai></set>
+        <condition var="pos">
+          <li value="0"></li>
+          <li>
+            <set var="item"><srai>FINDITEM <get var="fruta"/> IN <get var="auxlist"/></srai></set>
+            <set var="auxlist"><srai> REMOVEITEM <get var="item"/> IN <get var="auxlist"/></srai></set>
+          </li>
+        </condition>
+        <set var="fruta"><srai>NEXT</srai></set>
+      <loop/>
+      </li>
+    </condition>
+    <set name="lista"><get var="auxlist"/></set>
+  </think>
+</template>
+</category>
+
+<category>
+<pattern>SITAMAÑO <set>tamaño</set> </pattern>
+<template>
+  <think>
+    <set var="auxlist"><get name="lista"/></set>
+    <set var="fruta"><srai>ITERATE <get name="lista"/></srai></set>
+    <condition var="fruta">
+      <li value="$"></li>
+      <li>
+        <set var="contenido"><map name="tamaños"><get var="fruta"/></map></set>
+        <set var="pos"><srai>FINDITEM <star/> IN <get var="contenido"/></srai></set>
+        <condition var="pos">
+          <li value="0">
+            <set var="item"><srai> FINDITEM <get var="fruta"/> IN <get var="auxlist"/> </srai></set>
+            <set var="auxlist"><srai> REMOVEITEM <get var="item"/> IN <get var="auxlist"/></srai></set>
+          </li>
+          <li></li>
+        </condition>
+        <set var="fruta"><srai>NEXT</srai></set>
+      <loop/>
+      </li>
+    </condition>
+    <set name="lista"><get var="auxlist"/></set>
+  </think>
+</template>
+</category>
+
+<category>
+<pattern> NOTAMAÑO <set>tamaño</set> </pattern>
+<template>
+  <think>
+    <set var="auxlist"><get name="lista"/></set>
+    <set var="fruta"><srai>ITERATE <get name="lista"/></srai></set>
+    <condition var="fruta">
+      <li value="$"></li>
+      <li>
+        <set var="contenido"><map name="tamaños"><get var="fruta"/></map></set>
+        <set var="pos"><srai>FINDITEM <star/> IN <get var="contenido"/></srai></set>
+        <condition var="pos">
+          <li value="0"></li>
+          <li>
+            <set var="item"><srai>FINDITEM <get var="fruta"/> IN <get var="auxlist"/></srai></set>
+            <set var="auxlist"><srai> REMOVEITEM <get var="item"/> IN <get var="auxlist"/></srai></set>
+          </li>
+        </condition>
+        <set var="fruta"><srai>NEXT</srai></set>
+      <loop/>
+      </li>
+    </condition>
+    <set name="lista"><get var="auxlist"/></set>
+  </think>
+</template>
+</category>
+
+
+
+
+
+
+</topic>
+
+<!--Elige nuestro bot -->
+<category>
+<pattern>^ [elige eliges hazlo haces] ^</pattern>
+<template>
+    Mmmmm... ¡Hecho! ¡Intenta adivinarla!
+  <think>
+    <set name="topic">bot</set>
+    <set name="lista"><readset>frutas</readset></set>
+    <set var="pos"><srai>RANDOM <srai>COUNT <get name="lista"/></srai></srai></set>
+    <set name="fruta"><srai>SELECTITEM <get var="pos"/> IN <get name="lista"/></srai></set>
+  </think>
+</template>
+</category>
+
+<topic name="bot">
+
+<category>
+<pattern>La fruta es (el) (la) <set>frutas</set></pattern>
+<template>
+  <think>
+    <set var="cond"><srai>FINDITEM <star/> IN <get name="fruta"/></srai></set>
+  </think>
+  <condition var="cond">
+    <li value="0">Nop.</li>
+    <li>¡Sí! ¡Por fin terminamos este juego!</li>
+  </condition>
+</template>
+</category>
+
+<category>
+<pattern>^ [cual que] ^ (fruta) (es) ^</pattern>
+<template>¡<get name="fruta"/>!</template>
+</category>
+
+<category>
+<pattern>^ <set>color</set> ^</pattern>
+<template>
+  <think>
+    <set var="colorlist"><map name="colores"><get name="fruta"/></map></set>
+    <set var="color"><star index="2"/></set>
+    <condition var="color">
+      <li value="roja"><set var="color">rojo</set></li>
+      <li value="amarilla"><set var="color">amarillo</set></li>
+      <li value="morada"><set var="color">morado</set></li>
+      <li></li>
+    </condition>
+
+    <set var="pos"><srai>FINDITEM <get var="color"/> IN <get var="colorlist"/></srai></set>
+  </think>
+  <condition var="pos">
+    <li value="0">No, no es de ese color.</li>
+    <li>Sí, sí es de ese color.</li>
+  </condition>
+</template>
+</category>
+
+<category>
+<pattern>^ <set>tamaño</set> ^</pattern>
+<template>
+  <think>
+    <set var="tamlist"><map name="tamaños"><get name="fruta"/></map></set>
+    <set var="tam"><star index="2"/></set>
+    <condition var="tam">
+      <li value="pequeña"><set var="tam">pequeño</set></li>
+      <li value="mediana"><set var="tam">mediano</set></li>
+      <li></li>
+    </condition>
+    <set var="pos"><srai>FINDITEM <get var="tam"/> IN <get var="tamlist"/></srai></set>
+  </think>
+  <condition var="pos">
+    <li value="0">No, no es de ese tamaño.</li>
+    <li>Sí, sí es de ese tamaño.</li>
+  </condition>
+</template>
+</category>
+
+<category>
+<pattern>^ <set>sabor</set> ^</pattern>
+<template>
+  <think>
+    <set var="sablist"><map name="sabores"><get name="fruta"/></map></set>
+    <set var="sab"><star index="2"/></set>
+    <condition var="sab">
+      <li value="semiacida"><set var="sab">semiacido</set></li>
+      <li value="acida"><set var="sab">acido</set></li>
+      <li value="neutra"><set var="sab">neutro</set></li>
+      <li></li>
+    </condition>
+    <set var="pos"><srai>FINDITEM <get var="sab"/> IN <get var="sablist"/></srai></set>
+  </think>
+  <condition var="pos">
+    <li value="0">No, no es de ese sabor.</li>
+    <li>Sí, sí es de ese sabor.</li>
+  </condition>
+</template>
+</category>
+
+<category>
+<pattern>^ <set>vitamina</set> ^</pattern>
+<template>
+  <think>
+    <set var="vitlist"><map name="vitaminas"><get name="fruta"/></map></set>
+    <set var="pos"><srai>FINDITEM <star index="2"/> IN <get var="vitlist"/></srai></set>
+  </think>
+  <condition var="pos">
+    <li value="0">No, no tiene esa vitamina.</li>
+    <li>Sí, sí tiene esa vitamina.</li>
+  </condition>
+</template>
+</category>
+
+</topic>
+
+<!-- Algunas cosas útiles -->
+<!--
+<category>
+<pattern>MASCULCOLOR *</pattern>
+<template>
+  <think>
+    <set var="aux"><star/></set>
+    <condition var="aux">
+      <li value="naranja"><get var="aux"/></li>
+      <li>
+        <set var="aux"><srai>DELETRA <get var="aux"/></srai></set>
+        <set var="pos"> <srai>COUNT <get var="aux"/></srai></set>
+        <set var="genero"><srai>SELECTITEM <get var="pos"/> IN <get var="aux"/></srai></set>
+        <condition var="genero">
+          <li value="a">
+            <srai>CHANGEITEM <get var="pos"/> BY o IN <get var="aux"/></srai>
+          </li>
+          <li></li>
+        </condition>
+        <set var="aux"><srai>QUITARESPACIOS <get var="aux"/></srai></set>
+      </li>
+    </condition>
+  </think>
+  <get var="aux"/>
+</template>
+</category>
+
+-->
+
+</aiml>

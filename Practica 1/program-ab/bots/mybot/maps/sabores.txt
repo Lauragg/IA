@@ -1,0 +1,16 @@
+Fresa:semiacido
+Manzana:semiacido
+Naranja:acido
+Kiwi:acido
+Mandarina:acido
+Piña:acido
+Mango:semiacido
+Melocoton:semiacido
+Higo:dulce
+Ciruela:dulce
+Pera:dulce
+Platano:dulce
+Coco:neutro
+Aguacate:neutro
+Nuez:neutro
+Cereza:semiacido

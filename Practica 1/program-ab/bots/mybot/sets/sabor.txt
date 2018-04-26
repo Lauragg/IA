@@ -1,0 +1,7 @@
+semiacido
+semiacida
+acido
+acida
+dulce
+neutro
+neutra
