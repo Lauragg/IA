@@ -59,9 +59,15 @@ class celda{
 
   void CalcDistOrig(){
     if(padre!= NULL){
+<<<<<<< HEAD
       int pasos=abs(pos.orientacion-padre->pos.orientacion);
       if(pasos==3) pasos=1;
       distanciaOrigen=padre->distanciaOrigen+10*(pasos+1);
+=======
+	int pasos=abs(pos.orientacion-padre->pos.orientacion);
+	if(pasos==3) pasos=1;
+	distanciaOrigen=padre->distanciaOrigen+10*(pasos+1);
+>>>>>>> 2e063cecf730d975e074d35a78b65937413381d2
     }
   }
 
@@ -104,6 +110,7 @@ class celda{
 
   celda * getPadre(){
     return padre;}
+  estado getEstado(){return pos;}
 
   int getOrientacion(){return pos.orientacion;}
 
