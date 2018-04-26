@@ -136,7 +136,6 @@ void ComportamientoJugador::calcularPlan(const celda & origen, const celda & des
 		if(actual.getPadre()==NULL)
 			nulo=true;
 		else actual=*(actual.getPadre());
-		if(contador%100==0)
 			cout << contador<<endl;
 		contador++;
 		if(celdaCerrada(actual,ruta))
