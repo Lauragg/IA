@@ -110,11 +110,7 @@ class celda{
     return pos.fila==b.pos.fila && pos.columna==b.pos.columna;
   }
 
-<<<<<<< HEAD
-/* celda & operator=(const celda & b){
-=======
   celda & operator=(const celda & b){
->>>>>>> 2ee2a799af17436c547a7f66cdcf696dbb2feeac
     if(this!= &b){
       padre=b.padre;
       pos.fila=b.pos.fila;
