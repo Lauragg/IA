@@ -4,9 +4,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/laura/Escritorio/IA/Practica2/Comportamientos_Jugador/aldeano.cpp" "/home/laura/Escritorio/IA/Practica2/CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.o"
-  "/home/laura/Escritorio/IA/Practica2/Comportamientos_Jugador/jugador.cpp" "/home/laura/Escritorio/IA/Practica2/CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.o"
-  "/home/laura/Escritorio/IA/Practica2/src/comportamientos/comportamiento.cpp" "/home/laura/Escritorio/IA/Practica2/CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.o"
+  "/home/laura/Escritorio/GitHub/IA/Practica2/Comportamientos_Jugador/aldeano.cpp" "/home/laura/Escritorio/GitHub/IA/Practica2/CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/aldeano.cpp.o"
+  "/home/laura/Escritorio/GitHub/IA/Practica2/Comportamientos_Jugador/jugador.cpp" "/home/laura/Escritorio/GitHub/IA/Practica2/CMakeFiles/comportamientosLib.dir/Comportamientos_Jugador/jugador.cpp.o"
+  "/home/laura/Escritorio/GitHub/IA/Practica2/src/comportamientos/comportamiento.cpp" "/home/laura/Escritorio/GitHub/IA/Practica2/CMakeFiles/comportamientosLib.dir/src/comportamientos/comportamiento.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

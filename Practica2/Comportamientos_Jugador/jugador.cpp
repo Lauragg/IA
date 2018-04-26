@@ -122,9 +122,17 @@ void ComportamientoJugador::calcularPlan(const celda & origen, const celda & des
 	int pos, giros;
 		cout << "He llegado 2-1"<<endl;
 	//Inicializamos ruta, insertándole todas las celdas en orden de lectura.
-	while(!(actual==origen)){
+	bool nulo=false;
+	int contador=0;
+	while(!nulo){
 		ruta.push_front(actual);
-		actual=*actual.getPadre();
+		if(actual.getPadre()==NULL)
+			nulo=true;		
+		else actual=*(actual.getPadre());
+		if(contador%100==0)
+			cout << contador<<endl;
+		contador++;
+		
 	}
 		cout << "He llegado 2-2"<<endl;
 	ruta.push_front(origen);
