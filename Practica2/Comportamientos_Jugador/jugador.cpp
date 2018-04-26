@@ -57,8 +57,7 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 								pertenece=true;
 								//Si la g es mejor por el nuevo camino, entonces sustituimos.
 								if(iter->menorOrigen(*iterAb)){
-									iterAb=abierto.erase(iterAb);
-									iterAb=abierto.insert(iterAb,*iter);
+									*iterAb=*iter;
 								}
 							}
 							++iterAb;
@@ -73,8 +72,12 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 		}
 		//Paso 3: Reordenamos la lista de abiertos.
 		abierto.sort();
+	//cout << "Cerrados->" << cerrado.size()<<endl;
+	//cout << "Abiertos->" << abierto.size()<<endl;
 	}
-		cout << "He llegado 3"<<endl;
+	cout << "Origen->" << orig.getEstado().fila << " " << orig.getEstado().columna<<endl;
+	cout << "Destino->" << actual.getEstado().fila << " " << actual.getEstado().columna<<endl;		
+	cout << "He llegado 3"<<endl;
 	calcularPlan(orig,actual,plan);
 		cout << "He llegado 4"<<endl;
 
@@ -94,8 +97,11 @@ Action ComportamientoJugador::think(Sensores sensores) {
 		destino.fila=sensores.destinoF;
 		destino.columna=sensores.destinoC;
 		cout << "He llegado 1" <<endl;
+	cout << "Origen->" << fil << " " << col<<endl;
+	cout << "Destino->" << destino.fila << " " << destino.columna<<endl;
 		pathFinding(estado(fil,col,brujula),destino,plan);
 	}
+
 
 	accion=plan.front();
 	plan.pop_front();
@@ -123,18 +129,20 @@ void ComportamientoJugador::calcularPlan(const celda & origen, const celda & des
 		cout << "He llegado 2-1"<<endl;
 	//Inicializamos ruta, insertándole todas las celdas en orden de lectura.
 	bool nulo=false;
-	int contador=0;
-	while(!nulo){
+	bool doble=false;
+	//int contador=0;
+	while(!nulo&&!doble){
 		ruta.push_front(actual);
 		if(actual.getPadre()==NULL)
 			nulo=true;		
 		else actual=*(actual.getPadre());
-		if(contador%100==0)
-			cout << contador<<endl;
-		contador++;
-		
+		//if(contador%100==0)
+		//	cout << contador<<endl;
+		//contador++;
+		if(celdaCerrada(actual,ruta))
+			doble=true;
 	}
-		cout << "He llegado 2-2"<<endl;
+		cout << "He llegado 2-2"<< nulo << doble <<endl;
 	ruta.push_front(origen);
 
 
