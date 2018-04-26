@@ -59,15 +59,9 @@ class celda{
 
   void CalcDistOrig(){
     if(padre!= NULL){
-<<<<<<< HEAD
-      int pasos=abs(pos.orientacion-padre->pos.orientacion);
-      if(pasos==3) pasos=1;
-      distanciaOrigen=padre->distanciaOrigen+10*(pasos+1);
-=======
-	int pasos=abs(pos.orientacion-padre->pos.orientacion);
-	if(pasos==3) pasos=1;
-	distanciaOrigen=padre->distanciaOrigen+10*(pasos+1);
->>>>>>> 2e063cecf730d975e074d35a78b65937413381d2
+	     int pasos=abs(pos.orientacion-padre->pos.orientacion);
+	      if(pasos==3) pasos=1;
+	     distanciaOrigen=padre->distanciaOrigen+10*(pasos+1);
     }
   }
 
@@ -115,6 +109,11 @@ class celda{
   int getOrientacion(){return pos.orientacion;}
 
   void setOrientacion(int orienta){pos.orientacion=orienta;}
+
+  void setPadre(celda * papa){
+    padre=papa;
+    CalcDistOrig();
+  }
 
   bool operator ==(const celda & b) const{
     return pos.fila==b.pos.fila && pos.columna==b.pos.columna;

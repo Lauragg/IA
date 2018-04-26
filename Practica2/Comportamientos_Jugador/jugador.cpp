@@ -57,7 +57,7 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 								pertenece=true;
 								//Si la g es mejor por el nuevo camino, entonces sustituimos.
 								if(iter->menorOrigen(*iterAb)){
-									*iterAb=*iter;
+									iterAb->setPadre(iter->getPadre());
 								}
 							}
 							++iterAb;
@@ -76,7 +76,7 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 	//cout << "Abiertos->" << abierto.size()<<endl;
 	}
 	cout << "Origen->" << orig.getEstado().fila << " " << orig.getEstado().columna<<endl;
-	cout << "Destino->" << actual.getEstado().fila << " " << actual.getEstado().columna<<endl;		
+	cout << "Destino->" << actual.getEstado().fila << " " << actual.getEstado().columna<<endl;
 	cout << "He llegado 3"<<endl;
 	calcularPlan(orig,actual,plan);
 		cout << "He llegado 4"<<endl;
@@ -134,7 +134,7 @@ void ComportamientoJugador::calcularPlan(const celda & origen, const celda & des
 	while(!nulo&&!doble){
 		ruta.push_front(actual);
 		if(actual.getPadre()==NULL)
-			nulo=true;		
+			nulo=true;
 		else actual=*(actual.getPadre());
 		//if(contador%100==0)
 		//	cout << contador<<endl;
