@@ -36,19 +36,19 @@ class celda{
       int pos_col;
       pos_fil=pos.fila-1; pos_col=pos.columna;
       if(pos_fil >= 0 && pos_fil <= 100 && pos_col >=0 && pos_col <= 100)
-        adyacentes.emplace_back(this,pos_fil,pos_col,0,dest_fila,dest_columna);
+        adyacentes.emplace_back(new celda(*this),pos_fil,pos_col,0,dest_fila,dest_columna);
 
       pos_fil=pos.fila;pos_col=pos.columna+1;
       if(pos_fil >= 0 && pos_fil <= 100 && pos_col >=0 && pos_col <= 100)
-        adyacentes.emplace_back(this,pos_fil,pos_col,1,dest_fila,dest_columna);
+        adyacentes.emplace_back(new celda(*this),pos_fil,pos_col,1,dest_fila,dest_columna);
 
       pos_fil=pos.fila+1;pos_col=pos.columna;
       if(pos_fil >= 0 && pos_fil <= 100 && pos_col >=0 && pos_col <= 100)
-        adyacentes.emplace_back(this,pos_fil,pos_col,2,dest_fila,dest_columna);
+        adyacentes.emplace_back(new celda(*this),pos_fil,pos_col,2,dest_fila,dest_columna);
 
       pos_fil=pos.fila;pos_col=pos.columna-1;
       if(pos_fil >= 0 && pos_fil <= 100 && pos_col >=0 && pos_col <= 100)
-        adyacentes.emplace_back(this,pos_fil,pos_col,3,dest_fila,dest_columna);
+        adyacentes.emplace_back(new celda(*this),pos_fil,pos_col,3,dest_fila,dest_columna);
     }
 
   }
@@ -63,10 +63,6 @@ class celda{
 	      if(pasos==3) pasos=1;
 	     distanciaOrigen=padre->distanciaOrigen+10*(pasos+1);
     }
-  }
-
-  celda(celda * papa){
-    padre=papa;
   }
 
  public:
@@ -87,11 +83,21 @@ class celda{
     celda(copia.padre,copia.pos.fila,copia.pos.columna,copia.pos.orientacion,copia.dest_fila,copia.dest_columna){
     distanciaOrigen=copia.distanciaOrigen;
   }
-  celda(celda * papa, int fils, int cols, int bruj,int dfils, int dcols) :
-    padre(papa), pos(fils,cols,bruj){
+  celda(celda * papa, int fils, int cols, int bruj,int dfils, int dcols) :pos(fils,cols,bruj){
+      padre=papa;
       dest_fila=fils;
       dest_columna=dcols;
       CalcDistOrig();
+    }
+
+    void   set(celda * papa, int fils, int cols, int bruj,int dfils, int dcols) {
+          padre=papa;
+          pos.fila=fils;
+          pos.columna=cols;
+          pos.orientacion=bruj;
+          dest_fila=fils;
+          dest_columna=dcols;
+          CalcDistOrig();
     }
 
 //  celda(celda * papa, estado est) :
@@ -102,24 +108,28 @@ class celda{
       CalcAdy();
     return adyacentes;}
 
-  celda * getPadre(){
+  celda * getPadre() const{
     return padre;}
-  estado getEstado(){return pos;}
+  estado getEstado()const{return pos;}
 
-  int getOrientacion(){return pos.orientacion;}
+  int getOrientacion()const {return pos.orientacion;}
 
   void setOrientacion(int orienta){pos.orientacion=orienta;}
 
-  void setPadre(celda * papa){
+/*  void setPadre(celda * papa){
     padre=papa;
     CalcDistOrig();
+  }*/
+
+  void printPos(){
+    cout << pos.fila << " "<< pos.columna << "--";
   }
 
   bool operator ==(const celda & b) const{
     return pos.fila==b.pos.fila && pos.columna==b.pos.columna;
   }
 
-  celda & operator=(const celda & b){
+/*  celda & operator=(const celda & b){
     if(this!= &b){
       padre=b.padre;
       pos.fila=b.pos.fila;
@@ -130,7 +140,7 @@ class celda{
       dest_fila=b.dest_fila;
       dest_columna=b.dest_columna;
     }
-  }
+  }*/
 /*
   celda & operator=(celda * b){
     if(this!= b){
@@ -148,7 +158,9 @@ class celda{
 /*
   Este método nos devolverá true si tenemos una menor distancia al Origen o no en sentido estricto.
 */
-  bool menorOrigen(const celda & b) const{
+  bool menorOrigen( celda & b) {
+    CalcDistOrig();
+    b.CalcDistOrig();
     return distanciaOrigen < b.distanciaOrigen;
   }
 
@@ -213,7 +225,7 @@ class ComportamientoJugador : public Comportamiento {
     void PintaPlan(list<Action> plan);
     bool celdaCerrada(const celda & celd, const list<celda> &cerrado);
     void calcularPlan(const celda & origen, const celda & destino, list<Action> &plan);
-
+    void VisualizaPlan(const estado &st, const list<Action> &plan);
 };
 
 #endif

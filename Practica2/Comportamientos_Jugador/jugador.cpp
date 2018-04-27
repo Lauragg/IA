@@ -23,6 +23,40 @@ void ComportamientoJugador::PintaPlan(list<Action> plan) {
 	cout << endl;
 }
 
+void AnularMatriz(vector<vector<unsigned char> > &m){
+	for (int i=0; i<m[0].size(); i++){
+		for (int j=0; j<m.size(); j++){
+			m[i][j]=0;
+		}
+	}
+}
+
+void ComportamientoJugador::VisualizaPlan(const estado &st, const list<Action> &plan){
+  AnularMatriz(mapaConPlan);
+	estado cst = st;
+
+	auto it = plan.begin();
+	while (it!=plan.end()){
+		if (*it == actFORWARD){
+			switch (cst.orientacion) {
+				case 0: cst.fila--; break;
+				case 1: cst.columna++; break;
+				case 2: cst.fila++; break;
+				case 3: cst.columna--; break;
+			}
+			mapaConPlan[cst.fila][cst.columna]=1;
+		}
+		else if (*it == actTURN_R){
+			cst.orientacion = (cst.orientacion+1)%4;
+		}
+		else {
+			cst.orientacion = (cst.orientacion+3)%4;
+		}
+		it++;
+	}
+}
+
+
 bool ComportamientoJugador::pathFinding(const estado &origen, const estado &destino, list<Action> &plan) {
 	list<celda> abierto;
 	list<celda> cerrado;
@@ -46,7 +80,7 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 				if((*iter)==dest){
 					actual=*iter;
 					finalizado=true;
-						cout << "He llegado 2"<<endl;
+						cout << "\nHe llegado 2"<<endl;
 				}
 				else if(iter->accesible(mapaResultado) && !celdaCerrada(*iter,cerrado)){
 						//Comprobamos si iter pertenece a la lista de abiertos.
@@ -56,8 +90,14 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 							if((*iter)==(*iterAb)){
 								pertenece=true;
 								//Si la g es mejor por el nuevo camino, entonces sustituimos.
-								if(iter->menorOrigen(*iterAb)){
-									iterAb->setPadre(iter->getPadre());
+								if(iter->menorOrigen(*iterAb) && !(*iter->getPadre()==*iterAb->getPadre())){
+								//	cout << "\nPadre Iter:";	iter->getPadre()->printPos(); cout <<endl;
+								//	iter->printPos();
+								//	cout << "\nPadre IterAb:"; iterAb->getPadre()->printPos(); cout <<endl;
+								//	iterAb->printPos();
+									iterAb=abierto.erase(iterAb);
+									iterAb=abierto.insert(iterAb,*iter);
+
 								}
 							}
 							++iterAb;
@@ -82,6 +122,7 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 		cout << "He llegado 4"<<endl;
 
 	PintaPlan(plan);
+	//VisualizaPlan(origen,plan);
 
 	return true;
 }
@@ -125,24 +166,27 @@ bool ComportamientoJugador::celdaCerrada(const celda & celd, const list<celda> &
 void ComportamientoJugador::calcularPlan(const celda & origen, const celda & destino, list<Action> &plan){
 	list<celda> ruta;
 	celda actual=destino;
-	int pos, giros;
+	int pos=99, giros;
 		cout << "He llegado 2-1"<<endl;
 	//Inicializamos ruta, insertándole todas las celdas en orden de lectura.
 	bool nulo=false;
 	bool doble=false;
 	int contador=0;
 	while(!nulo&&!doble){
+		celda antigua=actual;
 		ruta.push_front(actual);
 		if(actual.getPadre()==NULL)
 			nulo=true;
-		else actual=*(actual.getPadre());
+		else actual=*(antigua.getPadre());
 			cout << contador<<endl;
 		contador++;
+		if(actual==antigua)
+			cout << "Iguales"<<endl;
 		if(celdaCerrada(actual,ruta))
 			doble=true;
 	}
 		cout << "He llegado 2-2"<< nulo << doble <<endl;
-	ruta.push_front(origen);
+	//ruta.push_front(origen);
 
 
 	//Comienzo la búsqueda.
@@ -151,14 +195,17 @@ void ComportamientoJugador::calcularPlan(const celda & origen, const celda & des
 	while(it!=ruta.end()){
 		//Vamos a recorrer las celdas adyacentes a la celda actual.
 		actual=*it;
-		list<celda>::iterator iter=actual.getAdyacentes().begin();
+		list<celda> adyacentes=actual.getAdyacentes();
+		list<celda>::iterator iter=adyacentes.begin();
 		//Con la celda siguiente.
 		++it;
+		cout << "He llegado 2-4"<<endl;
 		//Son exactamente 4 adyacentes siempre.
 		for(int i=0; i<4; i++){
 			if((*iter)==(*it)) pos=i;
 			++iter;
 		}
+		cout << "He llegado 2-5"<<endl;
 		//Así sabemos cuántos giros tenemos que dar y en qué dirección.
 		giros=actual.getOrientacion()-pos;
 		if(giros==1 || giros == -3)
@@ -169,9 +216,13 @@ void ComportamientoJugador::calcularPlan(const celda & origen, const celda & des
 			if(giros==-2 || giros ==2)
 				plan.push_back(actTURN_R);
 		}
+		cout <<"He llegado 2-6"<<endl;
 		plan.push_back(actFORWARD);
 		it->setOrientacion(pos);
+		cout << "He llegado 2-7"<<endl;
 	}
+	for(it=ruta.begin();it!=ruta.end();++it)
+		it->printPos();
 }
 
 int ComportamientoJugador::interact(Action accion, int valor){
