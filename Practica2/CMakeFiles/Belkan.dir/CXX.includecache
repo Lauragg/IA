@@ -6,9 +6,9 @@
 
 #IncludeRegexTransform: 
 
-/home/laura/Escritorio/GitHub/IA/Practica2/bin_src/juego.cc
+/home/laura/GitHub/IA/Practica2/bin_src/juego.cc
 motorlib.hpp
-/home/laura/Escritorio/GitHub/IA/Practica2/bin_src/motorlib.hpp
+/home/laura/GitHub/IA/Practica2/bin_src/motorlib.hpp
 
 Comportamientos_Jugador/aldeano.hpp
 chrono

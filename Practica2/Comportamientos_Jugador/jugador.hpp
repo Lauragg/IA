@@ -218,6 +218,10 @@ class ComportamientoJugador : public Comportamiento {
     int fil, col, brujula;
     estado destino;
     list<Action> plan;
+    Action accion=actIDLE;
+    bool hayPlan=false;
+    bool giro=true;
+    //bool planReactivo=false;
     //list<celda> cerrado;
 
 
@@ -226,6 +230,9 @@ class ComportamientoJugador : public Comportamiento {
     bool celdaCerrada(const celda & celd, const list<celda> &cerrado);
     void calcularPlan(const celda & origen, const celda & destino, list<Action> &plan);
     void VisualizaPlan(const estado &st, const list<Action> &plan);
+    void actualizarMapa(Sensores sensores);
+    bool reactivo(Sensores sensores, list<Action> & plan);
+    void miniBusqueda(int k,Sensores sensores, list<Action> &ruta);
 };
 
 #endif
