@@ -68,16 +68,6 @@ class celda{
  public:
   celda(){}
 
-/**
-  celda(celda * papa, list <celda> adyc, int fils, int cols, int bruj, int dfils, int dcols) :
-    padre(papa), adyacentes(adyc), pos(fils,cols,bruj){
-      dest_fila=fils;
-      dest_colummna=dcols;
-    }
-*/
-
-  //celda(celda * papa, list <celda> adyc, estado est):
-    //padre(papa), adyacentes(adyc), pos(est){}
 
   celda(const celda & copia) :
     celda(copia.padre,copia.pos.fila,copia.pos.columna,copia.pos.orientacion,copia.dest_fila,copia.dest_columna){
@@ -90,18 +80,6 @@ class celda{
       CalcDistOrig();
     }
 
-    void   set(celda * papa, int fils, int cols, int bruj,int dfils, int dcols) {
-          padre=papa;
-          pos.fila=fils;
-          pos.columna=cols;
-          pos.orientacion=bruj;
-          dest_fila=fils;
-          dest_columna=dcols;
-          CalcDistOrig();
-    }
-
-//  celda(celda * papa, estado est) :
-  //  celda(papa,est.fila,est.columna,est.orientacion){}
 
   list<celda> getAdyacentes() {
     if(adyacentes.empty())
@@ -116,45 +94,12 @@ class celda{
 
   void setOrientacion(int orienta){pos.orientacion=orienta;}
 
-/*  void setPadre(celda * papa){
-    padre=papa;
-    CalcDistOrig();
-  }*/
-
-  void printPos(){
-    cout << pos.fila << " "<< pos.columna << "--";
-  }
 
   bool operator ==(const celda & b) const{
     return pos.fila==b.pos.fila && pos.columna==b.pos.columna;
   }
 
-/*  celda & operator=(const celda & b){
-    if(this!= &b){
-      padre=b.padre;
-      pos.fila=b.pos.fila;
-      pos.columna=b.pos.columna;
-      pos.orientacion=b.pos.orientacion;
-      adyacentes=b.adyacentes;
-      distanciaOrigen=b.distanciaOrigen;
-      dest_fila=b.dest_fila;
-      dest_columna=b.dest_columna;
-    }
-  }*/
-/*
-  celda & operator=(celda * b){
-    if(this!= b){
-      padre=b->padre;
-      pos.fila=b->pos.fila;
-      pos.columna=b->pos.columna;
-      pos.orientacion=b->pos.orientacion;
-      adyacentes=b->adyacentes;
-      distanciaOrigen=b->distanciaOrigen;
-      dest_fila=b->dest_fila;
-      dest_columna=b->dest_columna;
-    }
-  }
-*/
+
 /*
   Este método nos devolverá true si tenemos una menor distancia al Origen o no en sentido estricto.
 */
@@ -221,8 +166,7 @@ class ComportamientoJugador : public Comportamiento {
     Action accion=actIDLE;
     bool hayPlan=false;
     bool giro=true;
-    //bool planReactivo=false;
-    //list<celda> cerrado;
+    int contador=0;
 
 
     bool pathFinding(const estado &origen, const estado &destino, list<Action> &plan);
@@ -233,6 +177,7 @@ class ComportamientoJugador : public Comportamiento {
     void actualizarMapa(Sensores sensores);
     bool reactivo(Sensores sensores, list<Action> & plan);
     void miniBusqueda(int k,Sensores sensores, list<Action> &ruta);
+    void girar(list<Action> & plan);
 };
 
 #endif
