@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+
 void ComportamientoJugador::PintaPlan(list<Action> plan) {
 	auto it = plan.begin();
 	while (it!=plan.end()){
@@ -67,7 +68,7 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 	//Paso 0
 	plan.clear();
 	abierto.push_front(orig);
-
+	//cout << "He llegado 2-1"<<endl;
 	while(!finalizado){
 		//Paso 1
 		actual=abierto.front();
@@ -134,13 +135,15 @@ Action ComportamientoJugador::think(Sensores sensores) {
 		fil=sensores.mensajeF;
 		col=sensores.mensajeC;
 	}
+		//cout<<"1. " << fil << " " << col << " "<< brujula<< endl;
 	if(accion==actTURN_R) brujula=(brujula+1)%4;
 	else if(accion==actTURN_L) brujula=(brujula+3)%4;
+		//cout<<"2. " << fil << " " << col << " "<< brujula<< endl;
 	//cout << "He llegado 1"<<endl;
 	//Comportamiento Reactivo.
 	if(fil== 99 || col == 99){
 		//cout << "He llegado 2"<<endl;
-	/*	if(sensores.superficie[2]=='a')
+		/*if(sensores.superficie[2]=='a')
 			accion=actIDLE;
 		else if(sensores.terreno[2]=='T' || sensores.terreno[2]=='K' || sensores.terreno[2]=='S')
 			accion=actFORWARD;
@@ -183,6 +186,9 @@ Action ComportamientoJugador::think(Sensores sensores) {
 		if(destino.fila!=sensores.destinoF || destino.columna!=sensores.destinoC || !hayPlan){
 			destino.fila=sensores.destinoF;
 			destino.columna=sensores.destinoC;
+			cout << "Origen " << fil << " " << col << " " << brujula <<endl;
+			cout << "Destino " << destino.fila<< " " << destino.columna<<endl;
+			if(plan.empty())cout << "Vacío"<<endl;
 			hayPlan=pathFinding(estado(fil,col,brujula),destino,plan);
 		}
 		//cout << "He llegado 3"<<endl;
@@ -268,7 +274,7 @@ void ComportamientoJugador::actualizarMapa(Sensores sensores){
 			for(int j=n; j>=1; j--){
 				k++;
 				mapaResultado[fil+j-n+i][col-i]=sensores.terreno[k];
-				//cout << fil+j-n+i << " " << col-i << " "<<mapaResultado[fil+j-n+i][col-i]<< "" << sensores.terreno[k]<<endl;
+				//cout << fil+j-n+i << " " << col-i << " "<<mapaResultado[fil+j-n+i][col-i]<< " " << sensores.terreno[k]<<endl;
 
 			}
 			//cout<<"---"<<endl;
@@ -360,7 +366,21 @@ bool ComportamientoJugador::reactivo(Sensores sensores, list<Action> & plan){
 	if(sensores.terreno[2]!='K' && sensores.terreno[2]!='T' && sensores.terreno[2]!='S')
 		bloqueado[0]=true;
 	if(k==0){
-		if(bloqueado[0] || bloqueado[1] || bloqueado[2]){
+		if(sensores.terreno[6]!='T' && sensores.terreno[6]!='S'){
+			bool bloqueo1=sensores.terreno[1]!='T' && sensores.terreno[1]!='S';
+			bool bloqueo3=sensores.terreno[3]!='T' && sensores.terreno[3]!='S';
+			if(bloqueo1 && bloqueo3){ //Todo bloqueado, así que doy la media vuelta.
+				plan.push_back(actTURN_R);
+				plan.push_back(actTURN_R);
+			}else if(bloqueo1){//Si 1 está bloqueado, giro a la derecha.
+				plan.push_back(actFORWARD);
+				plan.push_back(actTURN_R);
+			}else if(bloqueo3){//Si 3 está bloqueado, giro a la izquierda.
+				plan.push_back(actFORWARD);
+				plan.push_back(actTURN_L);
+			}
+
+		}else if(bloqueado[0] || bloqueado[1] || bloqueado[2]){
 			//cout << "bloqueado" << bloqueado[0]<<bloqueado[1]<<bloqueado[2]<<endl;
 			//cout << sensores.terreno[2]<<endl;
 			if(giro){
@@ -384,7 +404,7 @@ bool ComportamientoJugador::reactivo(Sensores sensores, list<Action> & plan){
 		miniBusqueda(k,sensores,plan);
 	}
 
-	PintaPlan(plan);
+	//PintaPlan(plan);
 	return true;
 
 }

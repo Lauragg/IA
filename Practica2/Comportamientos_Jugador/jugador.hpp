@@ -35,19 +35,19 @@ class celda{
       int pos_fil;
       int pos_col;
       pos_fil=pos.fila-1; pos_col=pos.columna;
-      if(pos_fil >= 0 && pos_fil <= 100 && pos_col >=0 && pos_col <= 100)
+      if(pos_fil >= 0 && pos_fil <= 99 && pos_col >=0 && pos_col <= 99)
         adyacentes.emplace_back(new celda(*this),pos_fil,pos_col,0,dest_fila,dest_columna);
 
       pos_fil=pos.fila;pos_col=pos.columna+1;
-      if(pos_fil >= 0 && pos_fil <= 100 && pos_col >=0 && pos_col <= 100)
+      if(pos_fil >= 0 && pos_fil <= 99 && pos_col >=0 && pos_col <= 99)
         adyacentes.emplace_back(new celda(*this),pos_fil,pos_col,1,dest_fila,dest_columna);
 
       pos_fil=pos.fila+1;pos_col=pos.columna;
-      if(pos_fil >= 0 && pos_fil <= 100 && pos_col >=0 && pos_col <= 100)
+      if(pos_fil >= 0 && pos_fil <= 99 && pos_col >=0 && pos_col <= 99)
         adyacentes.emplace_back(new celda(*this),pos_fil,pos_col,2,dest_fila,dest_columna);
 
       pos_fil=pos.fila;pos_col=pos.columna-1;
-      if(pos_fil >= 0 && pos_fil <= 100 && pos_col >=0 && pos_col <= 100)
+      if(pos_fil >= 0 && pos_fil <= 99 && pos_col >=0 && pos_col <= 99)
         adyacentes.emplace_back(new celda(*this),pos_fil,pos_col,3,dest_fila,dest_columna);
     }
 
