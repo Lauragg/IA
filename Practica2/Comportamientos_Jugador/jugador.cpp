@@ -69,7 +69,7 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 	plan.clear();
 	abierto.push_front(orig);
 
-	while(!finalizado){
+	while(!finalizado && dest.accesible(mapaResultado)){
 		//Paso 1
 		actual=abierto.front();
 		cerrado.push_back(actual);
@@ -109,9 +109,13 @@ bool ComportamientoJugador::pathFinding(const estado &origen, const estado &dest
 		//Paso 3: Reordenamos la lista de abiertos.
 		abierto.sort();
 	}
-	calcularPlan(orig,actual,plan);
-	PintaPlan(plan);
-	VisualizaPlan(origen,plan);
+	if(dest.accesible(mapaResultado)){
+		calcularPlan(orig,actual,plan);
+		PintaPlan(plan);
+		VisualizaPlan(origen,plan);
+	}else{
+		plan.push_back(actIDLE);
+	}
 
 	return true;
 }
