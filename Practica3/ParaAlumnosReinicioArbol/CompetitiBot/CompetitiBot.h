@@ -14,13 +14,12 @@
 #define MANUPCBOT_H_
 
 class Nodo{
-	static const int MaxProfundidad=5;
+	static const int MaxProfundidad=8;
 	int profundidad;
 	vector<Nodo> hijos;
 	Move movimiento;
 	GameState estado;
-	Player jugador,rival;
-	friend class CompetitiBot;
+	Player jugador;
 
 	void crearHijos(){
 		GameState hijo;
@@ -44,10 +43,17 @@ class Nodo{
 	int heuristica(){
 		//Positivo si yo tengo más en el granero, negativo si tiene más mi rival.
 		//0 en caso de tener la misma cantidad de semillas en el granero.
+		Player rival;
+		if(jugador==J1)
+			rival=J2;
+		else
+			rival=J1;
 		int resultadoActual=estado.getScore(jugador)-estado.getScore(rival);
+		//cerr << jugador<< " " << estado.getScore(jugador) <<" "<<rival <<" "<<estado.getScore(rival)<< " diferencia "<<resultadoActual<<endl;
 		if(estado.isFinalState()){
 			//Puntúa más un resultado real que un resultado calculado.
-			return resultadoActual;
+			return resultadoActual*100;
+
 		}
 		return resultadoActual;
 
@@ -57,16 +63,12 @@ class Nodo{
 public:
 	Nodo(){}
 	Nodo(const Nodo & nodo) : profundidad(nodo.profundidad), hijos(nodo.hijos),
-		movimiento(nodo.movimiento), estado(nodo.estado){}
+		movimiento(nodo.movimiento), estado(nodo.estado), jugador(nodo.jugador){}
 	Nodo(int pronfundo, Move movi, GameState state, Player player): profundidad(pronfundo),
-		movimiento(movi), estado(state), jugador(player){
-			if(jugador==J1)
-				rival=J2;
-			else
-				rival=J1;
-
+		movimiento(movi), estado(state),jugador(player){
+						//cerr << profundidad<<" "<<jugador<< " "<< player<<endl;
 		}
-
+/*
 	void set(int profundo, Move movi, GameState state, Player player){
 		profundidad=profundo;
 		movimiento=movi;
@@ -75,7 +77,7 @@ public:
 			rival=J2;
 		else
 			rival=J1;
-	}
+	}*/
 
 	Move getMovimiento(){return movimiento;}
 
@@ -88,44 +90,46 @@ public:
 		}
 		if(jugador==estado.getCurrentPlayer()){//Si es mi turno.
 			int i=1;
+			int aux=-100000;
 			for(vector<Nodo>::iterator iter=hijos.begin(); iter!=hijos.end(); iter++){
-				alpha=std::max(alpha,iter->alphaBeta(alpha,beta));
+				aux=std::max(aux,iter->alphaBeta(alpha,beta));
+				alpha=std::max(alpha,aux);
 				if(beta<=alpha){
-					hijos.resize(i); //La poda se convierte en cambiar el tamaño del vector.
-					//¡Ojo! No tengo claro cómo se comporta el end del iterador en este caso.
-					//Si falla, una posible solución es añadir como condición de salida i<=hijos.size()
-					//¿Por qué lo hago así y no con vector? Estoy sacrificando el tamaño de
-					//memoria que ocupa un entero por conseguir mayor eficiencia de acceso.
-				}
-				i++;
-			}
-			return alpha;
-
-		}else{
-			int i=1;
-			for(vector<Nodo>::iterator iter=hijos.begin(); iter!=hijos.end(); iter++){
-				beta=std::min(beta,iter->alphaBeta(alpha,beta));
-				if(alpha<=beta){
 					hijos.resize(i);
 				}
 				i++;
-			}
-			return beta;
+			}//cerr << "Max:alpha " <<alpha<<" beta " <<beta<<endl;
+			return aux;
+
+		}else{
+			int i=1;
+			int aux=10000;
+			for(vector<Nodo>::iterator iter=hijos.begin(); iter!=hijos.end(); iter++){
+				aux=std::min(aux,iter->alphaBeta(alpha,beta));
+				beta=std::min(beta,aux);
+				if(beta<=alpha){
+					hijos.resize(i);
+				}
+				i++;
+			}//cerr << "Min: alpha " <<alpha<<" beta " <<beta<<endl;
+			return aux;
 		}
 	}
 
 	Move movimientoHijo(){
 		int elegido;
 		int puntos=-100000;
-		if(hijos.empty());
+		if(hijos.empty())
 			crearHijos();
 		for(int i=0;i<hijos.size();i++){
 			int aux=hijos[i].alphaBeta(-100000,100000);
+			//cerr << i << " "<<aux<<endl;
 			if(aux>puntos){
 				elegido=i;
 				puntos=aux;
 			}
 		}
+					//cerr<<endl<<puntos<<endl;
 					return hijos[elegido].getMovimiento();
 	}
 
