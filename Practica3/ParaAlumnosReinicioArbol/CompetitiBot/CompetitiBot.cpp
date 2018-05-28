@@ -23,6 +23,8 @@ CompetitiBot::~CompetitiBot() {
 	// Liberar los recursos reservados (memoria, ficheros, etc.)
 }
 
+	int Nodo::numeroNodos=0;
+
 void CompetitiBot::initialize() {
 	// Inicializar el bot antes de jugar una partida
 }

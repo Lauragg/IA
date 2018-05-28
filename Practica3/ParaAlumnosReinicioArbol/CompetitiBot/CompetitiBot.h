@@ -9,12 +9,13 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <ctime>
 
 #ifndef MANUPCBOT_H_
 #define MANUPCBOT_H_
 
 class Nodo{
-	static const int MaxProfundidad=8;
+	//static const int MaxProfundidad=8; //Profundidad en función del tiempo
 	int profundidad;
 	vector<Nodo> hijos;
 	Move movimiento;
@@ -61,6 +62,7 @@ class Nodo{
 
 
 public:
+		static int numeroNodos;
 	Nodo(){}
 	Nodo(const Nodo & nodo) : profundidad(nodo.profundidad), hijos(nodo.hijos),
 		movimiento(nodo.movimiento), estado(nodo.estado), jugador(nodo.jugador){}
@@ -81,8 +83,11 @@ public:
 
 	Move getMovimiento(){return movimiento;}
 
-	int alphaBeta(int alpha, int beta){
-		if(estado.isFinalState() || profundidad==MaxProfundidad){
+	int alphaBeta(int alpha, int beta, clock_t clock_ini){
+		numeroNodos++;
+		double tiempo=6*(double(clock()-clock_ini)/CLOCKS_PER_SEC);
+		if(tiempo>1.8|| estado.isFinalState()){
+			//cerr << tiempo<<endl;
 			return heuristica();
 		}
 		if(hijos.empty()){
@@ -92,7 +97,7 @@ public:
 			int i=1;
 			int aux=-100000;
 			for(vector<Nodo>::iterator iter=hijos.begin(); iter!=hijos.end(); iter++){
-				aux=std::max(aux,iter->alphaBeta(alpha,beta));
+				aux=std::max(aux,iter->alphaBeta(alpha,beta,clock_ini));
 				alpha=std::max(alpha,aux);
 				if(beta<=alpha){
 					hijos.resize(i);
@@ -105,7 +110,7 @@ public:
 			int i=1;
 			int aux=10000;
 			for(vector<Nodo>::iterator iter=hijos.begin(); iter!=hijos.end(); iter++){
-				aux=std::min(aux,iter->alphaBeta(alpha,beta));
+				aux=std::min(aux,iter->alphaBeta(alpha,beta,clock_ini));
 				beta=std::min(beta,aux);
 				if(beta<=alpha){
 					hijos.resize(i);
@@ -121,20 +126,23 @@ public:
 		int puntos=-100000;
 		if(hijos.empty())
 			crearHijos();
+
+		clock_t clock_ini=clock();
 		for(int i=0;i<hijos.size();i++){
-			int aux=hijos[i].alphaBeta(-100000,100000);
+			int aux=hijos[i].alphaBeta(-100000,100000,clock());
 			//cerr << i << " "<<aux<<endl;
 			if(aux>puntos){
 				elegido=i;
 				puntos=aux;
 			}
 		}
-					//cerr<<endl<<puntos<<endl;
+					cerr<<numeroNodos <<" "<<(double(clock()-clock_ini)/CLOCKS_PER_SEC) <<endl;
 					return hijos[elegido].getMovimiento();
 	}
 
 
 };
+
 
 class CompetitiBot:Bot {
 	friend class Nodo;
